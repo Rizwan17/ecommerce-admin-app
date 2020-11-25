@@ -1,0 +1,31 @@
+.orderTrack{
+    width: 500px;
+    display: flex;
+}
+.orderStatus{
+    width: 33.33%;
+    height: 5px;
+    background: #26A541;
+    position: relative;
+    font-size: 12px;
+}
+.orderStatus:last-child{
+    width: 0;
+}
+.orderStatus .point{
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    border-radius: 8px;
+    background-color: #26A541;
+    top: -5px;
+}
+.orderInfo{
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    top: -26px;
+    transform: translateX(-50%);
+}
