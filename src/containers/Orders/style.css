@@ -5,9 +5,12 @@
 .orderStatus{
     width: 33.33%;
     height: 5px;
-    background: #26A541;
+    background: #777;
     position: relative;
     font-size: 12px;
+}
+.orderStatus.active{
+    background: #26A541;
 }
 .orderStatus:last-child{
     width: 0;
@@ -17,8 +20,11 @@
     height: 15px;
     position: absolute;
     border-radius: 8px;
-    background-color: #26A541;
+    background-color: #777;
     top: -5px;
+}
+.orderStatus .point.active{
+    background-color: #26A541;
 }
 .orderInfo{
     height: 60px;
