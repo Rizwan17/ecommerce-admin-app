@@ -35,3 +35,12 @@
     top: -26px;
     transform: translateX(-50%);
 }
+
+.title{
+    font-size: 14px;
+    font-weight: 600;
+}
+.value{
+    font-size: 12px;
+    text-transform: capitalize;
+}

@@ -4,7 +4,7 @@ import { Container, Row, Col, Table } from "react-bootstrap";
 import Input from "../../components/UI/Input";
 import Modal from "../../components/UI/Modal";
 import { useSelector, useDispatch } from "react-redux";
-import { addProduct } from "../../actions";
+import { addProduct, deleteProductById } from "../../actions";
 import { generatePublicUrl } from "../../urlConfig";
 import "./style.css";
 
@@ -43,7 +43,7 @@ const Products = (props) => {
       form.append("productPicture", pic);
     }
 
-    dispatch(addProduct(form));
+    dispatch(addProduct(form)).then(() => setShow(false));
   };
   const handleShow = () => setShow(true);
 
@@ -72,20 +72,33 @@ const Products = (props) => {
             <th>Price</th>
             <th>Quantity</th>
             <th>Category</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {product.products.length > 0
             ? product.products.map((product) => (
-                <tr
-                  onClick={() => showProductDetailsModal(product)}
-                  key={product._id}
-                >
+                <tr key={product._id}>
                   <td>2</td>
                   <td>{product.name}</td>
                   <td>{product.price}</td>
                   <td>{product.quantity}</td>
                   <td>{product.category.name}</td>
+                  <td>
+                    <button onClick={() => showProductDetailsModal(product)}>
+                      info
+                    </button>
+                    <button
+                      onClick={() => {
+                        const payload = {
+                          productId: product._id,
+                        };
+                        dispatch(deleteProductById(payload));
+                      }}
+                    >
+                      del
+                    </button>
+                  </td>
                 </tr>
               ))
             : null}

@@ -24,10 +24,54 @@ const Orders = (props) => {
     dispatch(updateOrder(payload));
   };
 
+  const formatDate = (date) => {
+    if (date) {
+      const d = new Date(date);
+      return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+    }
+    return "";
+  };
+
   return (
     <Layout sidebar>
       {order.orders.map((orderItem, index) => (
-        <Card key={index} headerLeft={orderItem._id}>
+        <Card
+          style={{
+            margin: "10px 0",
+          }}
+          key={index}
+          headerLeft={orderItem._id}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              padding: "50px 50px",
+              alignItems: "center",
+            }}
+          >
+            <div>
+              <div className="title">Items</div>
+              {orderItem.items.map((item, index) => (
+                <div className="value" key={index}>
+                  {item.productId.name}
+                </div>
+              ))}
+            </div>
+            <div>
+              <span className="title">Total Price</span>
+              <br />
+              <span className="value">{orderItem.totalAmount}</span>
+            </div>
+            <div>
+              <span className="title">Payment Type</span> <br />
+              <span className="value">{orderItem.paymentType}</span>
+            </div>
+            <div>
+              <span className="title">Payment Status</span> <br />
+              <span className="value">{orderItem.paymentStatus}</span>
+            </div>
+          </div>
           <div
             style={{
               boxSizing: "border-box",
@@ -48,7 +92,7 @@ const Orders = (props) => {
                   ></div>
                   <div className="orderInfo">
                     <div className="status">{status.type}</div>
-                    <div className="date">Fri, 2020</div>
+                    <div className="date">{formatDate(status.date)}</div>
                   </div>
                 </div>
               ))}
